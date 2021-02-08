@@ -15,6 +15,7 @@ export default auth0.default.requireAuthentication(async (req, res) => {
         }
         const { public_id } = await cloudinary.uploader.upload(file, {
             upload_preset: process.env.CLOUDINARY_UPLOAD_PRESET,
+            transformation: [{ flags: "force_strip" }],
         });
 
         if (existingRecord) {
